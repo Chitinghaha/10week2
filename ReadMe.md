@@ -13,6 +13,7 @@
 
 >### 2.程式碼
 **valid_doc():** 
+
 ![valid_doc( ): ](/1.jpg)  
 **output()**
 ![output( ) ](/2.jpg)
