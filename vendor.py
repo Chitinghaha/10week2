@@ -23,15 +23,17 @@ def output(buy_doc):
 
         # reload json
         data[buy_doc]['number'] = data[buy_doc]['number'] - 1
-        with open('inventories.json', 'w', encoding='utf-8') as file:
+        with open('inventories.json', 'w') as file:
             json.dump(data, file)
         file.close()
 
         # record yaml
         recording = {'name': data[buy_doc]['name'], 'price': data[buy_doc]['price'], 'time': datetime.datetime.now()}
+        recording_list = []
+        recording_list.append(recording)
 
-        with open('history.yaml', 'w', encoding='utf-8') as file:
-            yaml.dump(recording, file)
+        with open('history.yaml', 'a') as file:
+            yaml.dump(recording_list, file)
         file.close()
 
         f.close()
