@@ -5,8 +5,8 @@ import datetime
 
 
 class Inventory:
-    def __init__(self,number):
-        self.number=number
+    def __init__(self):
+        pass
         
     def open_json(self):
         with open('inventories.json', 'r', encoding='utf-8') as f:
@@ -19,7 +19,7 @@ class Inventory:
         file.close()
         
     def record_yaml(self,recording):
-        with open('history.yaml', 'w', encoding='utf-8') as file:
+        with open('history.yaml', 'a', encoding='utf-8') as file:
             yaml.dump(recording, file)
         file.close()
 
@@ -52,29 +52,31 @@ class UI:
 
 class Vendor:
     def __init__(self):
-        pass
+        self.ui=UI()
+        self.inventory=Inventory()
     
     def  operate(self):
-        money = UI.input_mon(self)
-        data = Inventory.open_json(self)
-        
-        # output product
-        for i in data:
-            if (money >= i['price']) & (i['number'] > 0):
-               UI.output_doc(self,data,i)
-        
-        buy_doc=UI.input_doc(self)
-        
-        # output money
-        UI.output_mon(self,money,data,buy_doc)
-        
-        # reload json
-        data[buy_doc]['number'] = data[buy_doc]['number'] - 1
-        Inventory.reload_json(self,data)
-        
-        # record yaml
-        recording = {'name': data[buy_doc]['name'], 'price': data[buy_doc]['price'], 'time': datetime.datetime.now()}
-        Inventory.record_yaml(self,recording)
+        while(1):
+            money = self.ui.input_mon()
+            data = self.inventory.open_json()
+            
+            # output product
+            for i in data:
+                if (money >= i['price']) & (i['number'] > 0):
+                    self.ui.output_doc(data,i)
+            
+            buy_doc=self.ui.input_doc()
+            
+            # output money
+            self.ui.output_mon(money,data,buy_doc)
+            
+            # reload json
+            data[buy_doc]['number'] = data[buy_doc]['number'] - 1
+            self.inventory.reload_json(data)
+            
+            # record yaml
+            recording = {'name': data[buy_doc]['name'], 'price': data[buy_doc]['price'], 'time': datetime.datetime.now()}
+            self.inventory.record_yaml(recording)
         
 
 
