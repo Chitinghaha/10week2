@@ -1,24 +1,25 @@
-# 程式說明
+# OOP說明
 >### 1.架構  
 
-#### 函式
-* valid_doc( ): 輸出可以買的產品
-* output( ):  
-     * 輸出要找多少錢 
-     * 更新json
-     * 儲存yaml
-#### 變數
-* money:輸入金額  
-* buy_doc:要購買的商品編號
+####  class 
+* Vendor :負責統合 Inventory 和 UI
+* Inventory: 紀錄、處理所有和庫存有關的事情
+* UI:負責和使用者輸出輸入有關的工作
+
+---
+
+#### 目標
+* refactoring
+* MVC 框架
+* SoC (Separation of Concerns)
 
 >### 2.程式碼
-**valid_doc():** 
+![Class Inventory](01.jpg)
 
-![valid_doc( ): ](/1.jpg)  
-**output()**
-![output( ) ](/2.jpg)
-**main:**
+---
 
-![output( ) ](/3.jpg)
+![Class UI](02.jpg)
 
+---
 
+![Class Vendor](03.jpg)
