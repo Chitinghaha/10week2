@@ -14,4 +14,12 @@
 * SoC (Separation of Concerns)
 
 >### 2.程式碼
-晚點補
+![Class Inventory](01.jpg)
+
+---
+
+![Class UI](02.jpg)
+
+---
+
+![Class Vendor](03.jpg)
